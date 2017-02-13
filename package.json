@@ -1,0 +1,17 @@
+{
+  "name": "ase",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "adobe-swatch-exchange": "0.0.0",
+    "ase-utils": "^0.1.1",
+    "ramda": "^0.23.0"
+  }
+}
