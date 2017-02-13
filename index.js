@@ -7,7 +7,7 @@ const path = require('path')
 
 const filePath = path.resolve(process.argv[2])
 const data = fs.readFileSync(filePath).toString()
-const outputName = process.argv[3]
+const outputName = process.argv[3] || path.basename(filePath).replace(/\.[^/.]+$/, '')
 
 const saveFile = fs.writeFileSync.bind(null, generateOutputName(filePath, outputName))
 const formatColor = formatColorAs.bind(null, outputName)
@@ -49,8 +49,6 @@ function formatSwatch (data) {
 
 function generateOutputName (filePath, name) {
   const outputDir = '/home/pawel/Pictures/Resources/swatches'
-  const outputName = name || path.basename(filePath).replace(/\.[^/.]+$/, '')
 
   return path.join(outputDir, outputName + '.ase')
 }
-
