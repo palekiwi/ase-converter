@@ -25,7 +25,7 @@ encode(data)
 
 // returns array
 function extractColorValues (file) {
-  return file.match(/rgba.+/g)
+  return file.match(/rgb.+/g)
     .map(s => s.match(/\d+/g))
     .map(a => a.slice(0,3))
 }
