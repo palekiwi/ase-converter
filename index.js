@@ -5,11 +5,13 @@ const R = require('ramda')
 const fs = require('fs')
 const path = require('path')
 
+const OUTPUT_DIR = '/home/pawel/Pictures/Resources/swatches'
+
 const filePath = path.resolve(process.argv[2])
 const data = fs.readFileSync(filePath).toString()
-const outputName = process.argv[3] || path.basename(filePath).replace(/\.[^/.]+$/, '')
+const outputName = generateOutputName(filePath)
 
-const saveFile = fs.writeFileSync.bind(null, generateOutputName(filePath, outputName))
+const saveFile = fs.writeFileSync.bind(null, path.join(OUTPUT_DIR, outputName))
 const formatColor = formatColorAs.bind(null, outputName)
 
 const encode = R.compose(
@@ -47,8 +49,9 @@ function formatSwatch (data) {
   }
 }
 
-function generateOutputName (filePath, name) {
-  const outputDir = '/home/pawel/Pictures/Resources/swatches'
+function generateOutputName (filePath) {
+  const nameIdx = process.argv.indexOf('-n')
+  const outputName = (nameIdx != -1) ? process.argv[nameIdx + 1] : path.basename(filePath).replace(/\.[^/.]+$/, '') + '.ase'
 
-  return path.join(outputDir, outputName + '.ase')
+  return outputName
 }
